@@ -4,7 +4,7 @@ import Extrain from './data.js'
 
 // app config
 const app = express()
-const port = 9000
+const port = 8000
 
 // DB config
 const connection_url = "mongodb+srv://nguyentruongxuananhn:superAnIT01!@cluster0.ytehc68.mongodb.net/?retryWrites=true&w=majority"
