@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import cors from 'cors'
 import Data from './data.js'
 import Videos from './dbModel.js'
 
@@ -9,11 +10,7 @@ const port = process.env.PORT || 8000
 
 // app middleware
 app.use(express.json())
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'),
-    res.setHeader('Access-Control-Allow-Headers', '*'),
-    next()
-})
+app.use(cors())
 
 // DB config
 const connection_url = "mongodb+srv://nguyentruongxuananhn:superAnIT01!@cluster0.ytehc68.mongodb.net/?retryWrites=true&w=majority"
@@ -29,9 +26,8 @@ app.get('/', (req, res) => res.status(200).send("hllo there"))
 app.get('/posts', (req, res) => res.status(200).send(Data))
 
 app.get('/v2/posts', (req, res) => {
-  const data = Videos
-  Videos.find(data)
-    .then((result) => {
+  Videos.find()
+    .then((data) => {
       res.status(201).send(data)
     })
     .catch((err) => {
@@ -43,7 +39,7 @@ app.post('/v2/posts', (req, res) => {
   // return promise and not callback anymore, so the Model.create data look for promise return, if it success then send data, else not send error
   Videos.create(dbVideos)
     .then((result) => {
-      res.status(201).send(dbVideos)
+      res.status(201).send(result) // result with result return id and __v differ from other options
     })
     .catch((err) => {
       res.status(500).send(err)
