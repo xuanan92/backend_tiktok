@@ -29,10 +29,10 @@ app.get('/', (req, res) => res.status(200).send("hllo there"))
 app.get('/posts', (req, res) => res.status(200).send(Data))
 
 app.get('/v2/posts', (req, res) => {
-  const dbVideos = req.body
-  Videos.find(dbVideos)
+  const data = Videos
+  Videos.find(data)
     .then((result) => {
-      res.status(201).send(dbVideos)
+      res.status(201).send(data)
     })
     .catch((err) => {
       res.status(500).send(err)
