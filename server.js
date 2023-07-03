@@ -21,9 +21,7 @@ mongoose.connect(connection_url, {
 
 
 // api endpoint
-app.get('/', (req, res) => res.status(200).send("hllo there"))
-
-app.get('/posts', (req, res) => res.status(200).send(Data))
+app.get('/', (req, res) => res.status(200).send(Data))
 
 app.get('/v2/posts', (req, res) => {
   Videos.find()
